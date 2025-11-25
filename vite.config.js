@@ -36,6 +36,9 @@ if (host === "localhost") {
   };
 }
 
+const isStorybook = process.argv[1]?.includes("storybook");
+
+
 export default defineConfig({
   server: {
     allowedHosts: [host],
@@ -49,7 +52,7 @@ export default defineConfig({
       allow: ["app", "node_modules"],
     },
   },
-  plugins: [reactRouter(), tsconfigPaths(), remix()],
+  plugins: [!isStorybook && reactRouter(), tsconfigPaths(), !isStorybook && remix()],
   build: {
     assetsInlineLimit: 0,
   },
