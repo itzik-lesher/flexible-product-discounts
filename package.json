@@ -1,5 +1,5 @@
 {
-  "name": "product-scheduler-js",
+  "name": "Flexible Product Discounts",
   "private": true,
   "scripts": {
     "build": "remix vite:build",

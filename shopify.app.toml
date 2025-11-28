@@ -1,6 +1,6 @@
 # Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
 client_id = "1aa1042261c5e3bf1c7949166a2ac88a"
-name = "product-scheduler-js"
+name = "Flexible Product Discounts"
 application_url = "https://example.com"
 embedded = true
 
