@@ -988,7 +988,7 @@ export default function Settings() {
         </div>
       </s-section>
 
-      <s-section heading="How to Use">
+      <s-section >
         <div
           style={{
             marginBottom: "24px",
