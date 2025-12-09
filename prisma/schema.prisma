@@ -1,98 +1,100 @@
 // This is your Prisma schema file, 
 // learn more about it in the docs: https://pris.ly/d/prisma-schema 
 
-generator client { 
-  provider = "prisma-client-js" 
-} 
+generator client {
+  provider = "prisma-client-js"
+}
 
 // Note that some adapters may set a maximum length for the String type by default, please ensure your strings are long 
 // enough when changing adapters. 
 // See https://pris.ly/d/prisma-schema-reference#string for more information 
 
 // change to postgresql 
-datasource db { 
-  provider = "postgresql" 
-  url = env("DATABASE_URL") 
-} 
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_DATABASE_URL")
+}
 
-model Session { 
-  id String @id 
-  shop String 
-  state String 
-  isOnline Boolean @default(false) 
-  scope String? 
-  expires DateTime? 
-  accessToken String 
-  userId BigInt? 
-  firstName String? 
-  lastName String? 
-  email String? 
-  accountOwner Boolean @default(false) 
-  locale String? 
-  collaborator Boolean? @default(false) 
-  emailVerified Boolean? @default(false) 
-} 
+model Session {
+  id            String    @id
+  shop          String
+  state         String
+  isOnline      Boolean   @default(false)
+  scope         String?
+  expires       DateTime?
+  accessToken   String
+  userId        BigInt?
+  firstName     String?
+  lastName      String?
+  email         String?
+  accountOwner  Boolean   @default(false)
+  locale        String?
+  collaborator  Boolean?  @default(false)
+  emailVerified Boolean?  @default(false)
+}
+
 model FormSettings {
-  id String @id @default(cuid())
-  shop String
+  id                String               @id @default(cuid())
+  shop              String
   shopifyDiscountId String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  products SelectedProduct[]
-  collections SelectedCollection[]
-  types SelectedType[]
-  tags SelectedTag[]
-  
+  createdAt         DateTime             @default(now())
+  updatedAt         DateTime             @updatedAt
+  products          SelectedProduct[]
+  collections       SelectedCollection[]
+  types             SelectedType[]
+  tags              SelectedTag[]
+
   @@unique([shop])
 }
 
 // Keep all other models the same (SelectedProduct, SelectedCollection, etc.)
 
-model SelectedProduct { 
-  id String @id @default(cuid()) 
-  formSettingsId String 
-  formSettings FormSettings @relation(fields: [formSettingsId], references: [id], onDelete: Cascade) 
-  shopifyProductId String 
-  productTitle String? 
+model SelectedProduct {
+  id                 String       @id @default(cuid())
+  formSettingsId     String
+  formSettings       FormSettings @relation(fields: [formSettingsId], references: [id], onDelete: Cascade)
+  shopifyProductId   String
+  productTitle       String?
   discountPercentage Int? // Stores selected discount: 10, 20, 30, 40, or 50
-  createdAt DateTime @default(now()) 
-  
-  @@unique([formSettingsId, shopifyProductId]) 
-} 
+  createdAt          DateTime     @default(now())
 
-model SelectedCollection { 
-  id String @id @default(cuid()) 
-  formSettingsId String 
-  formSettings FormSettings @relation(fields: [formSettingsId], references: [id], onDelete: Cascade) 
-  collectionId String 
-  collectionTitle String 
-  productCount Int @default(0) 
-  discountPercentage Int? // Stores selected discount: 10, 20, 30, 40, or 50
-  createdAt DateTime @default(now()) 
-  
-  @@unique([formSettingsId, collectionId]) 
-} 
+  @@unique([formSettingsId, shopifyProductId])
+}
 
-model SelectedType { 
-  id String @id @default(cuid()) 
-  formSettingsId String 
-  formSettings FormSettings @relation(fields: [formSettingsId], references: [id], onDelete: Cascade) 
-  typeName String 
-  productCount Int @default(0) 
+model SelectedCollection {
+  id                 String       @id @default(cuid())
+  formSettingsId     String
+  formSettings       FormSettings @relation(fields: [formSettingsId], references: [id], onDelete: Cascade)
+  collectionId       String
+  collectionTitle    String
+  productCount       Int          @default(0)
   discountPercentage Int? // Stores selected discount: 10, 20, 30, 40, or 50
-  createdAt DateTime @default(now()) 
-  
-  @@unique([formSettingsId, typeName]) 
-} 
+  createdAt          DateTime     @default(now())
 
-model SelectedTag { 
-  id String @id @default(cuid()) 
-  formSettingsId String 
-  formSettings FormSettings @relation(fields: [formSettingsId], references: [id], onDelete: Cascade) 
-  tagName String 
-  productCount Int @default(0) 
+  @@unique([formSettingsId, collectionId])
+}
+
+model SelectedType {
+  id                 String       @id @default(cuid())
+  formSettingsId     String
+  formSettings       FormSettings @relation(fields: [formSettingsId], references: [id], onDelete: Cascade)
+  typeName           String
+  productCount       Int          @default(0)
   discountPercentage Int? // Stores selected discount: 10, 20, 30, 40, or 50
-  createdAt DateTime @default(now()) 
-  
-  @@unique([formSettingsId, tagName]) 
+  createdAt          DateTime     @default(now())
+
+  @@unique([formSettingsId, typeName])
+}
+
+model SelectedTag {
+  id                 String       @id @default(cuid())
+  formSettingsId     String
+  formSettings       FormSettings @relation(fields: [formSettingsId], references: [id], onDelete: Cascade)
+  tagName            String
+  productCount       Int          @default(0)
+  discountPercentage Int? // Stores selected discount: 10, 20, 30, 40, or 50
+  createdAt          DateTime     @default(now())
+
+  @@unique([formSettingsId, tagName])
 }

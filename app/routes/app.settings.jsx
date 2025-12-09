@@ -2,7 +2,7 @@
 import { useAppBridge } from "@shopify/app-bridge-react";
 import { useState, useEffect } from "react";
 import styles from "./_index/styles.module.css";
-import { useLoaderData, useFetcher } from "react-router";
+import { useLoaderData, useFetcher } from "@remix-run/react";
 import { json } from "@remix-run/node";
 import db from "../db.server.js";
 

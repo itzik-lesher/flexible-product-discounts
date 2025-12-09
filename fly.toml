@@ -1,0 +1,33 @@
+# fly.toml app configuration file generated for product-discount-js-misty-field-1960 on 2025-11-30T12:41:56+02:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'product-discount-js-misty-field-1960'
+primary_region = 'ams'
+
+[build]
+
+[deploy]
+  release_command = 'npx prisma migrate deploy'
+
+[env]
+  PORT = '3000'
+  SCOPES = 'read_products,write_discounts,write_products'
+  SHOPIFY_API_KEY = '1aa1042261c5e3bf1c7949166a2ac88a'
+  SHOPIFY_APP_URL = 'https://product-discount-js-misty-field-1960.fly.dev'
+  
+[http_service]
+  internal_port = 3000
+  force_https = true
+  auto_stop_machines = 'stop'
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ['app']
+
+[[vm]]
+  memory = '1gb'
+  cpu_kind = 'shared'
+  cpus = 1
+
+ 

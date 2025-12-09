@@ -1,7 +1,7 @@
 # Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
 client_id = "1aa1042261c5e3bf1c7949166a2ac88a"
 name = "Flexible Product Discounts"
-application_url = "https://example.com"
+application_url = "https://product-discount-js-misty-field-1960.fly.dev"
 embedded = true
 
 [build]
@@ -18,7 +18,8 @@ api_version = "2024-10"
 scopes = "write_products,read_products,write_discounts"
 
 [auth]
-redirect_urls = [ 
-  "https://example.com/api/auth",
-  "https://example.com/auth/callback"
+redirect_urls = [
+  "https://product-discount-js-misty-field-1960.fly.dev/auth/callback",
+  "https://product-discount-js-misty-field-1960.fly.dev/auth/shopify/callback",
+  "https://product-discount-js-misty-field-1960.fly.dev/api/auth/callback"
 ]
