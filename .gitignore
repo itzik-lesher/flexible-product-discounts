@@ -11,7 +11,7 @@ node_modules
 /prisma/dev.sqlite-journal
 database.sqlite
 
-
+test-db.js
 
 .fly/
 fly/.dockerignore
