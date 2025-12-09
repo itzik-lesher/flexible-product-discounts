@@ -4,15 +4,20 @@ node_modules
 /build
 /app/build
 /public/build/
+/server/build/
 /public/_dev
 /app/public/build
 /prisma/dev.sqlite
 /prisma/dev.sqlite-journal
 database.sqlite
 
+.fly/
+fly/.dockerignore
+
 .env
 .env.*
 *.rar
+*/zip
 
 
 
