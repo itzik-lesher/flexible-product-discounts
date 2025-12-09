@@ -3,7 +3,7 @@ const { Client } = pkg;
 
 // Use the Session pooler connection string from Supabase
 const connectionString =
-                             "postgresql://postgres.tgjxsrccuwkuddyhyqvl:o8ujcxw26tgmki7csa9oiumhrfvwkzr@aws-1-eu-north-1.pooler.supabase.com:6543/postgres";
+  "postgresql://postgres.[db name]:[pass] @aws-1 - eu - north - 1.pooler.supabase.com: 6543 / postgres";
 
 const client = new Client({
   connectionString: connectionString,
